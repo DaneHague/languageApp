@@ -49,11 +49,12 @@ function NavigationBar(props) {
               </Button>
             </Link>
           </Typography>
-          <Link className={classes.navLinks} to="/test">
+          {localStorage.getItem('jwt') !== null ? <Link className={classes.navLinks} to="/profile">
             <Button className={classes.navButtonWrapper}>
-              Mnist Network
+              Profile
             </Button>
-          </Link>
+          </Link> : ""}
+          
           <Link className={classes.navLinks} to="/ResultsPage" color="contrast">
             <Button className={classes.navButtonWrapper}>
               Results

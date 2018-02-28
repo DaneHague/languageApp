@@ -10,19 +10,6 @@ const isDev = process.env.NODE_ENV !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const resolve = require('path').resolve;
 const app = express();
-const passport = require('passport');
-const passportSetup = require('../app/config/passportSetup');
-
-
-app.get('/auth/google',
-  passport.authenticate('google', {
-    scope: ['email'],
-  })
-);
-
-app.get('/auth/google/callback', passport.authenticate('google'), (req, res)=>{
-  res.send('callback URI');
-});
 
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here

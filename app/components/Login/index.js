@@ -13,8 +13,8 @@ import Button from 'material-ui/Button';
 import { Link } from 'react-router-dom';
 import Mail from 'material-ui-icons/Mail';
 import Typography from 'material-ui/Typography';
-import FaceBook from 'material-ui-icons/People'
-
+import Twitter from 'material-ui-icons/Chat'
+import axios from 'axios';
 
 const styles = theme => ({
   paper: {
@@ -49,6 +49,19 @@ const styles = theme => ({
   },
 });
 
+function getData(){
+  let config = {
+    headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+    }
+  }
+  axios.get('http://localhost:58411//api/users/secret', config)
+    .then(function (response) {
+      console.log(response.data)
+    });
+};
+
+
 class Login extends React.Component {
   render(){
   return (
@@ -58,19 +71,20 @@ class Login extends React.Component {
             Login
         </Typography>
         <Grid className={this.props.classes.icon} item xs={12}>
-          <a className={this.props.classes.linkButton} href="/auth/google">
+          <a className={this.props.classes.linkButton} href="http://localhost:58411/api/users/login/google">
             <Button className={this.props.classes.loginButton}>
               <Mail className={this.props.classes.icon}/>Sign in with Google
             </Button>
           </a>
         </Grid>
         <Grid className={this.props.classes.icon} item xs={12}>
-          <Link className={this.props.classes.linkButton} to='/'>
+          <a className={this.props.classes.linkButton} href="http://localhost:58411/api/users/login/facebook">
             <Button className={this.props.classes.loginButton}>
-              <FaceBook className={this.props.classes.icon}/>Sign in with FaceBook
+              <Twitter className={this.props.classes.icon}/>Sign in with Facebook
             </Button>
-          </Link>
+          </a>
         </Grid>
+        <a onClick={this.loginUser}> click </a>
       </Paper>
     </Grid>
   );

@@ -1,0 +1,1 @@
+export const GET_PROFILE_INFO = 'app/HomePage/GET_PROFILE_INFO';
